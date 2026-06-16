@@ -10,3 +10,25 @@
   } else {
     areas.forEach(a=>a.classList.add('is-visible'));
   }
+
+  document.addEventListener("DOMContentLoaded", function () {
+  const iaCards = document.querySelectorAll(".ia-card, .ia-diferencial, .ia-intro");
+
+  const observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("ia-visible");
+        }
+      });
+    },
+    {
+      threshold: 0.15
+    }
+  );
+
+  iaCards.forEach(function (card) {
+    card.classList.add("ia-hidden");
+    observer.observe(card);
+  });
+});
